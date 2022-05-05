@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Plus42
+Comment=Plus42
+Icon=${SNAP}/meta/gui/plus42.png
+Exec=plus42
+Terminal=false
+Categories=Development;IDE;

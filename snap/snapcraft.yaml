@@ -1,0 +1,38 @@
+name: plus42
+base: core18
+version: "1.0"
+summary: An HP-42S Calculator Simulator
+description: |
+  Plus42 is an advanced scientific programmable calculator, based on Free42.
+  Free42, in turn, is a complete re-implementation of the HP-42S scientific programmable RPN calculator, which was made from 1988 until 1995 by Hewlett-Packard. Free42 is a complete rewrite and contains no HP code whatsoever.
+
+architectures:
+  - build-on: i386
+  - build-on: amd64
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+slots:
+  dbus-plus42:
+    interface: dbus
+    bus: session
+    name: com.thomasokken.plus42
+
+apps:
+  plus42:
+    command: plus42dec
+    extensions: [gnome-3-28]
+    #plugs: [unity7, home, pulseaudio]
+    plugs: [home]
+    slots: [dbus-plus42]
+
+parts:
+  plus42:
+    plugin: make
+    source: https://github.com/thomasokken/plus42desktop.git
+    source-tag: v1.0
+    override-build: |
+      ./build-gtk
+      tar xvfz packages/*.tgz
+      cp Plus42Linux/* $SNAPCRAFT_PART_INSTALL
