@@ -1,6 +1,6 @@
 name: plus42
 base: core18
-version: "1.0"
+version: "1.0.9"
 summary: An HP-42S Calculator Simulator
 description: |
   Plus42 is an advanced scientific programmable calculator, based on Free42.
@@ -31,7 +31,7 @@ parts:
   plus42:
     plugin: make
     source: https://github.com/thomasokken/plus42desktop.git
-    source-tag: v1.0
+    source-tag: v1.0.9
     override-build: |
       ./build-gtk
       tar xvfz packages/*.tgz
